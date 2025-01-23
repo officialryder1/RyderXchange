@@ -63,7 +63,9 @@
                 <div>
                     <p><strong>Name:</strong> {user.name}</p>
                     <p><strong>Email:</strong> {user.email}</p>
-                    <span>
+                    <p><strong>UUID:</strong> {user.uuid}</p>
+                    <span class="flex">
+                        <p><strong>Email verification statues: </strong></p>
                         {#if user.is_verify}
                         <Verified class="text-green-500">Verified</Verified>
                         {:else}
@@ -87,17 +89,17 @@
             <p>
                 <strong>Status:</strong> {user.kyc_status}
             </p>
-            {#if user.kyc_status === 'Verified'}
+            {#if user.kyc_status === 'APPROVED'}
                 <CheckCircle class="w-5 h-5 text-green-500 ml-2" />
             {:else}
                 <XCircle class="w-5 h-5 text-red-500 ml-2" />
             {/if}
         </div>
-        <div>
-            {#if user.kyc_status !== 'Verified'}
+        
+            {#if user.kyc_status !== 'APPROVED'}
                 <a href="/kyc" class="bg-orange-500 text-white px-5 py-1 rounded-full text-sm hover:bg-orange-600 transition duration-300 mb-8">upload Kyc</a>
             {/if}
-        </div>
+        
     </section>
     
     <section class="bg-white shadow p-6 rounded-lg">

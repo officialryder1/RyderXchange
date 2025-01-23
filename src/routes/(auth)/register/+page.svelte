@@ -1,6 +1,7 @@
 <script>
     import { goto } from "$app/navigation";
     import { Wallet } from 'lucide-svelte'
+    import GoogleLogin from "$lib/components/+GoogleLogin.svelte";
 
     let email = $state('');
     let password = $state('');
@@ -51,8 +52,9 @@
 
 <div class="flex items-center justify-center min-h-screen bg-gray-100">
   <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-    <h1 class="text-3xl pb-10 font-bold text-orange-500"><Wallet></Wallet>RyderX</h1>
-    <h2 class="text-2xl font-bold mb-6 text-center">Register</h2>
+    <h1 class="text-3xl pb-5 font-bold text-orange-500"><Wallet></Wallet>RyderX</h1>
+    <small class="font-semibold text-gray-400">Already have an account? <a href="/login" class="text-orange-400">log in</a></small>
+    <h2 class="text-2xl font-bold mt-2 mb-6 text-center">Register</h2>
     <div class="mb-4">
       <label class="block text-gray-700 mb-2" for="email">Email</label>
       <input
@@ -98,5 +100,8 @@
       />
     </div>
     <button onclick={login} class="w-full p-2 bg-blue-500 text-white rounded-lg">Register</button>
+
+    <p class="p-3">Or register with:</p>
+    <GoogleLogin />
   </div>
 </div>

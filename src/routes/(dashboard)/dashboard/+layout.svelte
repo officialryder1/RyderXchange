@@ -4,9 +4,9 @@
     import { Home, TrendingUp, User, LogOut, ChartBarIncreasingIcon, ContactRound} from 'lucide-svelte'
 </script>
 
-<div class="flex h-screen bg-gray-100 ">
+<div class="flex h-full bg-gray-100 ">
     <!-- Sidebar -->
-    <aside class="w-64 bg-gray-900 text-gray-100 ">
+    <aside class="w-64 bg-gray-900 text-gray-100">
         <div class="p-4 text-2xl font-bold">RyderX</div>
         <nav class="space-y-2 mt-4">
             <a href="/dashboard" class="flex items-center px-4 py-2 hover:bg-gray-700 rounded">
@@ -29,7 +29,7 @@
             </a>
         </nav>
     </aside>
-    <main class="flex-1 p-6 h-screen">
+    <main class="flex-1 p-6">
         {@render children()}
     </main>
 </div>
