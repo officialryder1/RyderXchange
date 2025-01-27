@@ -32,11 +32,11 @@
     ];
 
     let options = [
-    { name: 'Deposit', href: '#', icon: Wallet },
-    { name: 'Futures', href: '#', icon: TrendingUp },
-    { name: 'Share', href: '#', icon: Share2 },
-    { name: 'C2C', href: '#', icon: Users },
-    { name: 'Finance', href: '#', icon: PiggyBank },
+    { name: 'Deposit', href: '/dashboard/wallet', icon: Wallet },
+    { name: 'Futures', href: '/dashboard/market', icon: TrendingUp },
+    { name: 'Share', href: '/dashboard', icon: Share2 },
+    { name: 'C2C', href: '/c2c', icon: Users },
+    { name: 'Finance', href: '/dashboard', icon: PiggyBank },
     ];
     
     async function createSession(){
@@ -56,10 +56,10 @@
     <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
       <div class="text-2xl font-bold">RyderX</div>
       <div class="hidden md:flex space-x-4">
-        <a href="/" class="hover:text-orange-400 font-bold tracking-wide">Markets</a>
-        <a href="/" class="hover:text-orange-400 font-bold tracking-wide">Trade</a>
-        <a href="/" class="hover:text-orange-400 font-bold tracking-wide">Derivatives</a>
-        <a href="/" class="hover:text-orange-400 font-bold tracking-wide">Earn</a>
+        <a href="/dashboard/market" class="hover:text-orange-400 font-bold tracking-wide">Markets</a>
+        <a href="/dashboard" class="hover:text-orange-400 font-bold tracking-wide">Trade</a>
+        <a href="/dashboard" class="hover:text-orange-400 font-bold tracking-wide">Derivatives</a>
+        <a href="/dashboard" class="hover:text-orange-400 font-bold tracking-wide">Earn</a>
       </div>
       <a href="/register" class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600" >Sign Up</a>
     </nav>
