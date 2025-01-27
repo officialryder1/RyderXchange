@@ -6,7 +6,7 @@
     async function handleSubmit(e) {
         if (e.key === 'Enter'){
             try{
-                const res = await fetch('http://localhost:8000/api/verify-email/', {
+                const res = await fetch('http://localhost:8000/api/auth/verify-email/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

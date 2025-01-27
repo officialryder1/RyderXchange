@@ -8,7 +8,7 @@
 
     async function login() {
         try {
-        const res = await fetch('http://localhost:8000/api/token/', {
+        const res = await fetch('http://localhost:8000/api/auth/token/', {
             method: "POST",
             headers: {
             'Content-Type': "application/json"

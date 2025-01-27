@@ -1,7 +1,7 @@
 <script>
 	let { children } = $props();
     import '../../../app.css'
-    import { Home, TrendingUp, User, LogOut, ChartBarIncreasingIcon, ContactRound} from 'lucide-svelte'
+    import { Home, TrendingUp, User, LogOut, ChartBarIncreasingIcon, ContactRound, Wallet} from 'lucide-svelte'
 </script>
 
 <div class="flex h-full bg-gray-100 ">
@@ -14,6 +14,9 @@
             </a>
             <a href="/dashboard/market" class="flex items-center px-4 py-2 hover:bg-gray-700 rounded">
                 <TrendingUp class="w-5 h-5 mr-3" /> Markets
+            </a>
+            <a href="/dashboard/wallet" class="flex items-center px-4 py-2 hover:bg-gray-700 rounded">
+                <Wallet class="w-5 h-5 mr-3" /> Wallet
             </a>
             <a href="/c2c" class="flex items-center px-4 py-2 hover:bg-gray-700 rounded">
                 <ChartBarIncreasingIcon class="w-5 h-5 mr-3" /> C2C

@@ -39,6 +39,7 @@
 		"@oslojs/encoding": "^1.1.0",
 		"jsonwebtoken": "^9.0.2",
 		"lucide-svelte": "^0.473.0",
+		"pusher-js": "^8.4.0-rc2",
 		"svelte-google-auth": "^0.7.2"
 	}
 }

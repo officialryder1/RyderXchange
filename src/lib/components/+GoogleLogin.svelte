@@ -30,7 +30,7 @@
   
     async function handleGoogleResponse(response) {
       try {
-        const res = await fetch("http://127.0.0.1:8000/api/users/google-login/", {
+        const res = await fetch("http://127.0.0.1:8000/api/auth/users/google-login/", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ access_token: response.credential }),

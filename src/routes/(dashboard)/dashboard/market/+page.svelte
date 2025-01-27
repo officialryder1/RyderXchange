@@ -19,7 +19,7 @@
     ));
 </script>
 
-<main class="p-6">
+<main class="p-6 h-screen">
     <h1 class="text-3xl font-bold mb-6 text-center">Crypto Market</h1>
 
     <!-- Search Input -->

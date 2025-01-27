@@ -1,17 +1,22 @@
 <script>
     import { DollarSign, ArrowUpRight, ArrowDownRight, CreditCard } from 'lucide-svelte';
     import { onMount } from 'svelte';
+    import { pagination, getPageFromUrl } from '$lib/pagination';
+    import { getCookie } from '$lib/handleCookies';
+    import { formatDateTime } from '$lib/dateFormat';
 
     let {data} = $props()
     const user = data?.user
     let marketData = $state([])
+    let transactions = $state([])
 
     let refreshInterval = $state(null)
 
     onMount(() => {
         refreshInterval = setInterval(async () => {
             marketData = data?.marketData
-        },1000) 
+        },1000),
+        transaction()
 
         return () => clearInterval(refreshInterval)
     })
@@ -21,6 +26,30 @@
         { id: 2, type: 'Sell', amount: 2.5, crypto: 'ADA', price: 1.37 },
         { id: 3, type: 'Buy', amount: 0.1, crypto: 'ETH', price: 185.01 },
     ];
+
+    async function transaction(url='http://localhost:8000/api/wallets/transactions/') {
+    const access = getCookie('access_token')
+    
+    const response = await fetch(url, {
+      headers: {
+        'Authorization': `Bearer ${access}`
+      }
+    });
+    if (response.ok) {
+      let data = await response.json()
+      
+      pagination.set({
+        next: data.next,
+        previous: data.previous,
+        currentPage: getPageFromUrl(data.next || data.previous),
+        totalPages: Math.ceil(data.count / data.results.length)
+      })
+      
+      transactions = data?.results || data
+    } else {
+      console.error("Failed fetch transactions")
+    }
+  }
 </script>
 
 <div>
@@ -84,18 +113,35 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {#each recentTransactions as { id, type, amount, crypto, price }}
+                    {#each transactions as transaction}
                         <tr class="border-t">
-                            <td class="p-4">{type}</td>
-                            <td class="p-4">{amount}</td>
-                            <td class="p-4">{crypto}</td>
-                            <td class="p-4">${price.toLocaleString()}</td>
+                        <td class="py-3">{formatDateTime(transaction.created_at)}</td>
+                        <td class="py-3">{transaction.transaction_type}</td>
+                        <td class="py-3">{transaction.amount} {transaction.crypto}</td>
+                        <td class="py-3 {transaction.status === 'Completed' ? 'text-green-500' : 'text-yellow-500'}">
+                            {transaction.status}
+                        </td>
                         </tr>
                     {/each}
                 </tbody>
             </table>
         </div>
     </section>
+</div>
+<div class="flex items-center justify-center space-x-4 mt-4">
+    <button 
+    class="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 disabled:opacity-50"
+    onclick={() => goToPage($pagination.next)}
+    disabled={!$pagination.next}>
+    previous
+  </button>
+  <span class="font-bold">Page {$pagination.currentPage}</span>
+  <button 
+      class="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 disabled:opacity-50"
+      onclick={() => goToPage($pagination.previous)}
+      disabled={!$pagination.previous}>
+      Next
+  </button>
 </div>
 
 <style>

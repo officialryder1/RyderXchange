@@ -10,7 +10,7 @@ const firstHandle = async ({event, resolve}) => {
 
 	if(accessToken && !isTokenExpire(accessToken)) {
 		try{
-			const res = await fetch(`http://localhost:8000/api/token/?token=${encodeURIComponent(accessToken)}`, {
+			const res = await fetch(`http://localhost:8000/api/auth/token/?token=${encodeURIComponent(accessToken)}`, {
 				method: 'GET',
 				headers: {
 					'Content-Type': 'application/json'
